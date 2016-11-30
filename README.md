@@ -34,7 +34,8 @@ Run
 To run the app:
 
 ```
-KB_URL='http://<host>:<port>' ruby app.rb
+KB_URL='http://<host>:<port>' PAYPAGE_ID='<PAYPAGE_ID>' MERCHANT_TX_ID='<MERCHANT_ID>' ORDER_ID='<ORDER_ID>' REPORT_GROUP='<REPORT_GROUP>' ruby app.rb
+
 ```
 
 Then go to [http://localhost:4567/](http://localhost:4567/) where you should see the **Checkout Form** loaded from Litle (Vantiv).

@@ -3,6 +3,10 @@ require 'killbill_client'
 require 'uri'
 
 set :kb_url, ENV['KB_URL'] || 'http://127.0.0.1:8080'
+set :paypage_id, ENV['PAYPAGE_ID']
+set :merchant_tx_id, ENV['MERCHANT_TX_ID']
+set :order_id, ENV['ORDER_ID']
+set :report_group, ENV['REPORT_GROUP']
 
 #
 # Kill Bill configuration and helpers
@@ -52,13 +56,6 @@ def create_subscription(account, user, reason, comment, options)
   override_trial.phase_type = 'TRIAL'
   override_trial.fixed_price = 10.0
   subscription.price_overrides << override_trial
-
-  begin
-    # sometime returns an error: "Error locking accountRecordId='***'"
-    subscription.create(user, reason, comment, nil, true, options)
-  rescue Exception => e
-    puts e.message
-  end
 end
 
 #
@@ -66,6 +63,11 @@ end
 #
 
 get '/' do
+  @paypage_id = settings.paypage_id
+  @merchant_tx_id = settings.merchant_tx_id
+  @order_id = settings.order_id
+  @report_group = settings.report_group
+
   erb :index
 end
 
@@ -147,12 +149,13 @@ __END__
         <h3>Test Input Fields</h3>
         <table class="testFieldTable">
             <tr>
-                <td>Paypage ID</td><td><input type="text" id="request$paypageId" name="request$paypageId" value="a2y4o6m8k0" disabled/></td>
-                <td>Merchant Txn ID</td><td><input type="text" id="request$merchantTxnId" name="request$merchantTxnId" value="987012"/></td>
+            value=<%= "'#{@customerId}'" %>
+                <td>Paypage ID</td><td><input type="text" id="request$paypageId" name="request$paypageId" value=<%= "'#{@paypage_id}'" %> disabled/></td>
+                <td>Merchant Txn ID</td><td><input type="text" id="request$merchantTxnId" name="request$merchantTxnId" value=<%= "'#{@merchant_tx_id}'" %> /></td>
             </tr>
             <tr>
-                <td>Order ID</td><td><input type="text" id="request$orderId" name="request$orderId" value="order_123"/></td>
-                <td>Report Group</td><td><input type="text" id="request$reportGroup" name="request$reportGroup" value="*merchant1500" disabled/></td>
+                <td>Order ID</td><td><input type="text" id="request$orderId" name="request$orderId" value=<%= "'#{@order_id}'" %> /></td>
+                <td>Report Group</td><td><input type="text" id="request$reportGroup" name="request$reportGroup" value=<%= "'#{@report_group}'" %> disabled/></td>
             </tr>
             <tr>
                 <td>JS Timeout</td><td><input type="text" id="request$timeout" name="request$timeout" value="5000" disabled/></td>
