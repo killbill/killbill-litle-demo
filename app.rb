@@ -56,6 +56,7 @@ def create_subscription(account, user, reason, comment, options)
   override_trial.phase_type = 'TRIAL'
   override_trial.fixed_price = 10.0
   subscription.price_overrides << override_trial
+  subscription.create(user, reason, comment, nil, true, options)
 end
 
 #
@@ -149,7 +150,6 @@ __END__
         <h3>Test Input Fields</h3>
         <table class="testFieldTable">
             <tr>
-            value=<%= "'#{@customerId}'" %>
                 <td>Paypage ID</td><td><input type="text" id="request$paypageId" name="request$paypageId" value=<%= "'#{@paypage_id}'" %> disabled/></td>
                 <td>Merchant Txn ID</td><td><input type="text" id="request$merchantTxnId" name="request$merchantTxnId" value=<%= "'#{@merchant_tx_id}'" %> /></td>
             </tr>
