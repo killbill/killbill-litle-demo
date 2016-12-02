@@ -1,7 +1,7 @@
 Kill Bill Litle Demo
 ====================
 
-This sample app shows you how to integrate Litle (Vantiv) eProtect (PayPage) feature with [Kill Bill subscriptions APIs](http://docs.killbill.io/0.16/userguide_subscription.html).
+This sample app shows you how to integrate Litle (Vantiv) eProtect (PayPage) features with [Kill Bill subscriptions APIs](http://docs.killbill.io/0.16/userguide_subscription.html).
 
 Prerequisites
 -------------
@@ -40,7 +40,13 @@ KB_URL='http://<host>:<port>' PAYPAGE_ID='<PAYPAGE_ID>' MERCHANT_TX_ID='<MERCHAN
 
 Then go to [http://localhost:4567/](http://localhost:4567/) where you should see the **Checkout Form** loaded from Litle (Vantiv).
 
-You will need to complete the following fields:
+You will need to select the desired Integration Method between:
+* eProtect JavaScript API
+* eProtect iFrame API
+
+![Integration method](./integrationMethods.png)
+
+If you selected **eProtect JavaScript API**, you will need to complete the following fields:
 
 * First Name
 * Last Name
@@ -58,7 +64,25 @@ That will:
 * Create a new subscription for the sports car monthly plan (with a $10 30-days trial)
 * Charge the token for $10
 
-![Checkout Form](./image1.png)
+![Checkout Form](./image1_eProtect.png)
 
-![Thank you Page](./image2.png)
+If you selected **eProtect iFrame API**, you will need to complete the following fields:
+* Credit Card number (Account Number for Litle)
+* Credit Card Expiration Date (Month and Year)
+* Credit Card Security Code
 
+Then click the **Submit** button to proceed with Checkout.
+
+That will:
+
+* Tokenize the Credit Card in Litle (Vantiv)
+* Create a new Kill Bill account
+* Add a default payment method on this account associated with this token
+* Create a new subscription for the sports car monthly plan (with a $10 30-days trial)
+* Charge the token for $10
+
+![Checkout Form](./image1_eProtect_iFrame.png)
+
+Both of them will then open the Thank You page:
+
+![Thank you Page](./thankyou.png)
