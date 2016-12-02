@@ -1,7 +1,7 @@
-Kill Bill Litle demo
+Kill Bill Litle Demo
 ====================
 
-This sample app shows you how to integrate Litle (Vantiv) tokenization / PayPage feature with [Kill Bill subscriptions APIs](http://docs.killbill.io/0.16/userguide_subscription.html).
+This sample app shows you how to integrate Litle (Vantiv) eProtect (PayPage) feature with [Kill Bill subscriptions APIs](http://docs.killbill.io/0.16/userguide_subscription.html).
 
 Prerequisites
 -------------
@@ -42,11 +42,13 @@ Then go to [http://localhost:4567/](http://localhost:4567/) where you should see
 
 You will need to complete the following fields:
 
-* Card number (Account Number for Litle)
-* Card Expiration Date (Month and Year)
-* Security Code
+* First Name
+* Last Name
+* Credit Card number (Account Number for Litle)
+* Credit Card Security Code
+* Credit Card Expiration Date (Month and Year)
 
-Then click the **Submit** button to proceed with Checkout.
+Then click the **Checkout with PayPage** button to proceed with Checkout.
 
 That will:
 
