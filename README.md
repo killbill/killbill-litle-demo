@@ -24,7 +24,7 @@ bundle install
 
 This also assumes:
 
-* Kill Bill is [already setup](http://docs.killbill.io/0.16/getting_started.html)
+* Kill Bill is [already setup](http://docs.killbill.io/0.20/getting_started.html)
 * The default tenant (bob/lazar) has been created
 * The [Litle plugin](https://github.com/killbill/killbill-litle-plugin) is installed and configured with valid credentials.
 
